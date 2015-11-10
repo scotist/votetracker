@@ -1,3 +1,4 @@
+
 var images = [];
 var picture1 = document.getElementById('img1');
 var picture2 = document.getElementById('img2');
@@ -144,5 +145,40 @@ displayImages();
 // tracker.calcNewNum();
 // tracker.vote();
 // tracker.displayImages();
+
+// END TRACKER OBJECT
+
+// chart stuff goes here
+
+// Get the context of the canvas element we want to select
+var ctx = document.getElementById("myChart").getContext("2d");
+var myDoughnutChart = new Chart(ctx[1]).Doughnut(data,options);
+
+
+// The following is sample data. We need to take the data from images.name and images.path and push it to a new array for the chart
+
+// var data = [
+//     {
+//         value: 300,
+//         color:"#F7464A",
+//         highlight: "#FF5A5E",
+//         label: "Red"
+//     },
+//     {
+//         value: 50,
+//         color: "#46BFBD",
+//         highlight: "#5AD3D1",
+//         label: "Green"
+//     },
+//     {
+//         value: 100,
+//         color: "#FDB45C",
+//         highlight: "#FFC870",
+//         label: "Yellow"
+//     }
+// ]
+
+
+// end chart stuff
 
 
