@@ -81,6 +81,53 @@ displayImages = function () {
     console.log('You voted for ' + images[num2].name);
     });
 
+  var pieLabels = [];
+  var pieVotes = [];
+
+  for (var i = 0; i < images.length; i++) {
+    pieLabels.push(images[i].name);
+    pieVotes.push(images[i].votes);
+  }
+
+console.log(pieLabels, pieVotes);
+
+  // var pieData = [
+  //   {
+  //     value: 30,
+  //     color:"#F7464A",
+  //     highlight: "#FF5A5E",
+  //     label: 'red'
+  //   },
+  //   {
+  //     value: 30,
+  //     color: "#46BFBD",
+  //     highlight: "#5AD3D1",
+  //     label: 'dead'
+  //   }
+  // ];
+function randomColor() {
+  var hexDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+  var result = '#';
+  for (var i = 0; i < 6; i++) {
+    result += hexDigits[Math.floor(Math.random()*hexDigits.length)];
+  }
+  return result;
+}
+var pieData = [];
+  for (var i in pieLabels) {
+    pieData.push({
+      value: pieVotes[i],
+      label: pieLabels[i],
+      color: randomColor(),
+      highlight: '#eeeeee'
+    })
+  }
+
+// Get the context of the canvas element we want to select
+var myChart = document.getElementById("myChart").getContext("2d");
+new Chart(myChart).Pie(pieData);
+//var myDoughnutChart = new Chart(ctx[1]).Doughnut(data,options);
+
 }
 
 displayImages();
@@ -149,34 +196,19 @@ displayImages();
 // END TRACKER OBJECT
 
 // chart stuff goes here
+// var pieLabels = [];
+// var pieVotes = [];
+// for (var i = 0; i < 12; i++) {
+//   pieLabels.push(images[i].name);
+//   pieVotes.push(images[i].votes);
+// }
 
-// Get the context of the canvas element we want to select
-var ctx = document.getElementById("myChart").getContext("2d");
-var myDoughnutChart = new Chart(ctx[1]).Doughnut(data,options);
+// console.log(pieLabels, pieVotes);
+
 
 
 // The following is sample data. We need to take the data from images.name and images.path and push it to a new array for the chart
 
-// var data = [
-//     {
-//         value: 300,
-//         color:"#F7464A",
-//         highlight: "#FF5A5E",
-//         label: "Red"
-//     },
-//     {
-//         value: 50,
-//         color: "#46BFBD",
-//         highlight: "#5AD3D1",
-//         label: "Green"
-//     },
-//     {
-//         value: 100,
-//         color: "#FDB45C",
-//         highlight: "#FFC870",
-//         label: "Yellow"
-//     }
-// ]
 
 
 // end chart stuff
