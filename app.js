@@ -49,27 +49,19 @@ vote = function (index) {
   displayImages();
 }
 
-
-
 displayImages = function () {
   var num1 = random();
   var num2 = calcNewNum(num1);
   var temp = document.getElementById('temp');
 
-
   picture1 = document.createElement('img');
   picture2 = document.createElement('img');
-  picture1.setAttribute('id', 'img1');
-  picture2.setAttribute('id', 'img2');
 
   picture1.setAttribute('src', images[num1].path);
   picture2.setAttribute('src', images[num2].path);
 
-  picture1.setAttribute('width', '300');
-  picture2.setAttribute('width', '300');
   temp.appendChild(picture1);
   temp.appendChild(picture2);
-
 
   picture1.addEventListener('click', function(){
     vote(num1);
