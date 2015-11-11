@@ -25,13 +25,13 @@ var shoes = new failCakes("shoes", src="images/shoes.png");
 var sprinkles = new failCakes("sprinkles", src="images/sprinkles.png");
 var toenail = new failCakes("toenail", src="images/toenail.png");
 
+
 var random = function () {
   return Math.floor(Math.random() * images.length);
   console.log(random);
 }
 
 random();
-
 
 calcNewNum = function (num1) {
   do {
@@ -82,7 +82,6 @@ displayImages = function () {
   }
 
   console.log(pieLabels, pieVotes);
-
 
   function randomColor() {
     var hexDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
@@ -177,3 +176,52 @@ displayImages();
 
 // END TRACKER OBJECT
 
+// NEW TRACKER?
+
+// var tracker = {
+//   left: '',
+//   right: '',
+//   leftImgEl: document.getElementById('leftPhoto'),
+//   rightImgEl: document.getElementById('rightPhoto'),
+//   leftCaption: document.getElementById('capLeft'),
+//   rightCaption: document.getElementById('capRight'),
+
+//   getRandomNum: function() {
+//     return math.floor(Math.random() * images.length);
+//   }
+
+//   getRandomImg: function() {
+//     this.left = images[tracker.getRandomNum()];
+//     this.right - images[tracker.getRandomNum()];
+
+//     while(this.left === this.right) {
+//       this.right = images[tracker.getRandomNum()];
+//     }
+
+//     this.leftImgEl.src = this.left.path;
+//     this.leftImgEl.id = this.left.name;
+//     this.left .....
+
+//   vote: function(id) {
+//     for (var i in images) {
+//       if (images[i].name === id) {
+//         images[i].botes += 1;
+//         data.datasets[0].data[i] = images[i].votes;
+//         chart.datasets[0].bars[i].value = images[i].votes;
+//       }
+//     }
+//   }
+//   }
+// }
+
+// var trx = document.getElementById('catChart').getContext('2d');
+// var chart = new Chart(ctx).Bar(data, {
+//   scaleShowVerticalLines: false,
+//   scaleShowVerticalLines: true,
+//   barStrokeWidth: 1
+// });
+
+// var mainContent = document.getElementById('main_content');
+// mainContent.addEventListener('click', function(event) {
+//   if (event.target.id === tracker.left.name || event.target.id === tracker.right.name)
+// })
