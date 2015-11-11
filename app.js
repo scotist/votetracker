@@ -44,7 +44,7 @@ var vote = function (index) {
   console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
   images[index].votes++;
   console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
-  myChart.segments[index].value = images[index].votes;
+  // myChart.segments[index].value = images[index].votes;
   myChart.update();
 
   displayImages();
@@ -79,7 +79,15 @@ var makeChart = function() {
         highlight: '#eeeeee'
       })
   }
-      return pieData;
+  var oldcanv = document.getElementById('canvas');
+  document.getElementById('main').removeChild(oldcanv);
+  var canv = document.createElement('canvas');
+  canv.id = 'canvas';
+  canv.height = '400';
+  canv.width = '400';
+  document.getElementById('main').appendChild(canv);
+  context = canv.getContext('2d');
+  new Chart(context).Pie(pieData);
 };
 
 
@@ -99,15 +107,28 @@ var displayImages = function () {
 picture1.addEventListener('click', function(){
     vote(num1);
     console.log('You voted for ' + images[num1].name);
+    makeChart();
   });
 
-  picture2.addEventListener('click', function(){
+picture2.addEventListener('click', function(){
     vote(num2);
     console.log('You voted for ' + images[num2].name);
+    makeChart();
     });
 
 displayImages();
 
+var data = [
+  {
+    value: 40,
+    color: "#F74648",
+    highlight: "#FF5a5e",
+    label: "Bob"
+  }
+]
+
 var context = document.getElementById("canvas").getContext("2d");
-var myChart = new Chart(context).Pie(makeChart());
+var myChart = new Chart(context).Pie(data);
+
+
 

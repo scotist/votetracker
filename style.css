@@ -42,3 +42,7 @@ header h1{
   vertical-align: center;
   text-align: center;
 }
+
+#canvas {
+  vertical-align: center;
+}
