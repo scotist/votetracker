@@ -1,77 +1,56 @@
 
 var images = [];
-var picture1 = document.getElementById('img1');
-var picture2 = document.getElementById('img2');
+
+var picture1 = document.getElementById('picture1');
+var picture2 = document.getElementById('picture2');
+
+
 
 function failCakes(name, path) {
   this.name = name;
   this.path = path;
   this.votes = 0;
   images.push(this);
-  // tracker.images.push(this);
 };
 
-var baby = new failCakes("baby", src="images/baby.png");
-var buzz = new failCakes("buzz", src="images/buzz.png");
-var clown = new failCakes("clown", src="images/clown.png");
-var deadbaby = new failCakes("deadbaby", src="images/deadbaby.jpg");
-var literal = new failCakes("literal", src="images/literal.png");
-var love = new failCakes("love", src="images/love.jpg");
-var melting = new failCakes("melting", src="images/melting.png");
-var olympics = new failCakes("olympics", src="images/olympics.png");
-var proofread = new failCakes("proofread", src="images/proofread.png");
-var remember = new failCakes("remember", src="images/remember.png");
-var shoes = new failCakes("shoes", src="images/shoes.png");
-var sprinkles = new failCakes("sprinkles", src="images/sprinkles.png");
-var toenail = new failCakes("toenail", src="images/toenail.png");
+var baby = new failCakes("baby", "images/baby.png");
+var buzz = new failCakes("buzz", "images/buzz.png");
+var clown = new failCakes("clown", "images/clown.png");
+var deadbaby = new failCakes("deadbaby", "images/deadbaby.jpg");
+var literal = new failCakes("literal", "images/literal.png");
+var love = new failCakes("love", "images/love.jpg");
+var melting = new failCakes("melting", "images/melting.png");
+var olympics = new failCakes("olympics", "images/olympics.png");
+var proofread = new failCakes("proofread", "images/proofread.png");
+var remember = new failCakes("remember", "images/remember.png");
+var shoes = new failCakes("shoes", "images/shoes.png");
+var sprinkles = new failCakes("sprinkles", "images/sprinkles.png");
+var toenail = new failCakes("toenail", "images/toenail.png");
 
-
-var random = function () {
+var randomNum = function () {
   return Math.floor(Math.random() * images.length);
-  console.log(random);
-}
+  console.log(randomNum);
+};
 
-random();
-
-calcNewNum = function (num1) {
+var calcNewNum = function (num1) {
+  var num2;
   do {
-    var num2 = random();
+    num2 = randomNum();
   } while (num1 === num2)
   return num2;
-}
+};
 
-vote = function (index) {
+var vote = function (index) {
   console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
   images[index].votes++;
   console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
-  picture1.parentNode.removeChild(picture1);
-  picture2.parentNode.removeChild(picture2);
+  myChart.segments[index].value = images[index].votes;
+  myChart.update();
+
   displayImages();
-}
+};
 
-displayImages = function () {
-  var num1 = random();
-  var num2 = calcNewNum(num1);
-  var temp = document.getElementById('temp');
-
-  picture1 = document.createElement('img');
-  picture2 = document.createElement('img');
-
-  picture1.setAttribute('src', images[num1].path);
-  picture2.setAttribute('src', images[num2].path);
-
-  temp.appendChild(picture1);
-  temp.appendChild(picture2);
-
-  picture1.addEventListener('click', function(){
-    vote(num1);
-    console.log('You voted for ' + images[num1].name);
-  });
-
-  picture2.addEventListener('click', function(){
-    vote(num2);
-    console.log('You voted for ' + images[num2].name);
-    });
+var makeChart = function() {
 
   var pieLabels = [];
   var pieVotes = [];
@@ -99,129 +78,36 @@ displayImages = function () {
         color: randomColor(),
         highlight: '#eeeeee'
       })
-    }
+  }
+      return pieData;
+};
 
-  var myChart = document.getElementById("myChart").getContext("2d");
-  new Chart(myChart).Pie(pieData);
-  // myChart.update();
 
-}
+var num1, num2;
+
+var displayImages = function () {
+  num1 = randomNum();
+  num2 = calcNewNum(num1);
+  var temp = document.getElementById('temp');
+
+  picture1.setAttribute('src', images[num1].path);
+  picture2.setAttribute('src', images[num2].path);
+
+
+};
+
+picture1.addEventListener('click', function(){
+    vote(num1);
+    console.log('You voted for ' + images[num1].name);
+  });
+
+  picture2.addEventListener('click', function(){
+    vote(num2);
+    console.log('You voted for ' + images[num2].name);
+    });
 
 displayImages();
 
+var context = document.getElementById("canvas").getContext("2d");
+var myChart = new Chart(context).Pie(makeChart());
 
-  // tried to use  myChart.update() to eliminate previous charts overlap issue; console claims it's not a function
-
-
-// var tracker = {
-//   images: []
-// };
-
-// tracker.random = function () {
-//   return Math.floor(Math.random() * images.length);
-//   console.log(random);
-// };
-
-// tracker.calcNewNum = function (num1) {
-//   do {
-//     var num2 = tracker.random();
-//   } while (num1 === num2)
-//   return num2;
-// };
-
-// tracker.vote = function (index) {
-//   console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
-//   images[index].votes++;
-//   console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
-//   picture1.parentNode.removeChild(picture1);
-//   picture2.parentNode.removeChild(picture2);
-//   displayImages();
-// };
-
-// tracker.displayImages = function () {
-//   var num1 = tracker.random();
-//   var num2 = tracker.calcNewNum(num1);
-//   var temp = document.getElementById('temp');
-
-
-//   picture1 = document.createElement('img');
-//   picture2 = document.createElement('img');
-//   picture1.setAttribute('id', 'img1');
-//   picture2.setAttribute('id', 'img2');
-
-//   picture1.setAttribute('src', images[num1].path);
-//   picture2.setAttribute('src', images[num2].path);
-
-//   picture1.setAttribute('width', '300');
-//   picture2.setAttribute('width', '300');
-//   temp.appendChild(picture1);
-//   temp.appendChild(picture2);
-
-//   picture1.addEventListener('click', function(){
-//     vote(num1);
-//     console.log('You voted for ' + images[num1].name);
-//   });
-
-//   picture2.addEventListener('click', function(){
-//     vote(num2);
-//     console.log('You voted for ' + images[num2].name);
-//     });
-
-// };
-
-// tracker.random();
-// tracker.calcNewNum();
-// tracker.vote();
-// tracker.displayImages();
-
-// END TRACKER OBJECT
-
-// NEW TRACKER?
-
-// var tracker = {
-//   left: '',
-//   right: '',
-//   leftImgEl: document.getElementById('leftPhoto'),
-//   rightImgEl: document.getElementById('rightPhoto'),
-//   leftCaption: document.getElementById('capLeft'),
-//   rightCaption: document.getElementById('capRight'),
-
-//   getRandomNum: function() {
-//     return math.floor(Math.random() * images.length);
-//   }
-
-//   getRandomImg: function() {
-//     this.left = images[tracker.getRandomNum()];
-//     this.right - images[tracker.getRandomNum()];
-
-//     while(this.left === this.right) {
-//       this.right = images[tracker.getRandomNum()];
-//     }
-
-//     this.leftImgEl.src = this.left.path;
-//     this.leftImgEl.id = this.left.name;
-//     this.left .....
-
-//   vote: function(id) {
-//     for (var i in images) {
-//       if (images[i].name === id) {
-//         images[i].botes += 1;
-//         data.datasets[0].data[i] = images[i].votes;
-//         chart.datasets[0].bars[i].value = images[i].votes;
-//       }
-//     }
-//   }
-//   }
-// }
-
-// var trx = document.getElementById('catChart').getContext('2d');
-// var chart = new Chart(ctx).Bar(data, {
-//   scaleShowVerticalLines: false,
-//   scaleShowVerticalLines: true,
-//   barStrokeWidth: 1
-// });
-
-// var mainContent = document.getElementById('main_content');
-// mainContent.addEventListener('click', function(event) {
-//   if (event.target.id === tracker.left.name || event.target.id === tracker.right.name)
-// })
