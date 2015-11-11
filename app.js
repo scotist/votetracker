@@ -112,9 +112,14 @@ displayImages = function () {
 
   var myChart = document.getElementById("myChart").getContext("2d");
   new Chart(myChart).Pie(pieData);
+
 }
 
 displayImages();
+
+
+  // tried to use  myChart.update() to eliminate previous charts overlap issue; console claims it's not a function
+
 
 // var tracker = {
 //   images: []
