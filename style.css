@@ -1,0 +1,44 @@
+body{
+  background-color: Aqua;
+}
+
+#wrapper{
+  background-color: Pink;
+  width: 50%;
+  margin: auto;
+}
+
+h1, h2, h3{
+  color: Black;
+  text-align: center;
+  padding-top: 20px;
+}
+
+a{
+  color: #010938;
+  font-size: 24px;
+}
+
+header{
+  border: 2px solid #4D8BBB;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+}
+
+header {
+  font-size: 40px;
+  margin-bottom: 0%;
+  padding-bottom: 0%;
+}
+
+header h1{
+  top
+  margin-top: 0%;
+  padding-top: 0%;
+}
+
+#temp{
+  padding-top: 2px;
+  vertical-align: center;
+  text-align: center;
+}

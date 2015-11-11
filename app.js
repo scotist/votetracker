@@ -112,6 +112,7 @@ displayImages = function () {
 
   var myChart = document.getElementById("myChart").getContext("2d");
   new Chart(myChart).Pie(pieData);
+  // myChart.update();
 
 }
 
