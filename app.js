@@ -96,12 +96,14 @@ var displayImages = function () {
 
 picture1.addEventListener('click', function(){
     vote(num1);
+    // picture1.setAttribute("class", "winnerOne");
     console.log('You voted for ' + images[num1].name);
     makeChart();
   });
 
 picture2.addEventListener('click', function(){
     vote(num2);
+    // picture2.setAttribute("class", "winnerTwo");
     console.log('You voted for ' + images[num2].name);
     makeChart();
     });
