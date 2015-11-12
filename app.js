@@ -53,7 +53,7 @@ var tracker = {
 }
 // End tracker object
 
-
+// The below got put into tracker:
 // var randomNum = function () {
 //   return Math.floor(Math.random() * images.length);
 //   console.log(randomNum);
