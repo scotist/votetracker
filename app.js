@@ -25,28 +25,57 @@ var shoes = new failCakes("shoes", "images/shoes.png");
 var sprinkles = new failCakes("sprinkles", "images/sprinkles.png");
 var toenail = new failCakes("toenail", "images/toenail.png");
 
-var randomNum = function () {
-  return Math.floor(Math.random() * images.length);
-  console.log(randomNum);
-};
+// Begin tracker object
+var tracker = {
+  randomNum: function () {
+    return Math.floor(Math.random() * images.length);
+    console.log(randomNum);
+  },
 
-var calcNewNum = function (num1) {
-  var num2;
-  do {
-    num2 = randomNum();
-  } while (num1 === num2)
-  return num2;
-};
+  calcNewNum: function (num1) {
+    var num2;
+    do {
+      num2 = tracker.randomNum();
+    } while (num1 === num2)
+      return num2;
+  },
 
-var vote = function (index) {
-  console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
-  images[index].votes++;
-  console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
-  // myChart.segments[index].value = images[index].votes;
-  myChart.update();
+  vote: function (index) {
+    console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
+    images[index].votes++;
+    console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
+    // myChart.segments[index].value = images[index].votes;
+    myChart.update();
 
-  displayImages();
-};
+    displayImages();
+  }
+
+}
+// End tracker object
+
+
+// var randomNum = function () {
+//   return Math.floor(Math.random() * images.length);
+//   console.log(randomNum);
+// };
+
+// var calcNewNum = function (num1) {
+//   var num2;
+//   do {
+//     num2 = randomNum();
+//   } while (num1 === num2)
+//   return num2;
+// };
+
+// var vote = function (index) {
+//   console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
+//   images[index].votes++;
+//   console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
+//   // myChart.segments[index].value = images[index].votes;
+//   myChart.update();
+
+//   displayImages();
+// };
 
 var makeChart = function() {
   var pieLabels = [];
@@ -86,8 +115,8 @@ var makeChart = function() {
 var num1, num2;
 
 var displayImages = function () {
-  num1 = randomNum();
-  num2 = calcNewNum(num1);
+  num1 = tracker.randomNum();
+  num2 = tracker.calcNewNum(num1);
   var temp = document.getElementById('temp');
 
   picture1.setAttribute('src', images[num1].path);
@@ -95,14 +124,14 @@ var displayImages = function () {
 };
 
 picture1.addEventListener('click', function(){
-    vote(num1);
+    tracker.vote(num1);
     // picture1.setAttribute("class", "winnerOne");
     console.log('You voted for ' + images[num1].name);
     makeChart();
   });
 
 picture2.addEventListener('click', function(){
-    vote(num2);
+    tracker.vote(num2);
     // picture2.setAttribute("class", "winnerTwo");
     console.log('You voted for ' + images[num2].name);
     makeChart();
