@@ -4,8 +4,6 @@ var images = [];
 var picture1 = document.getElementById('picture1');
 var picture2 = document.getElementById('picture2');
 
-
-
 function failCakes(name, path) {
   this.name = name;
   this.path = path;
@@ -51,17 +49,12 @@ var vote = function (index) {
 };
 
 var makeChart = function() {
-
   var pieLabels = [];
   var pieVotes = [];
-
   for (var i = 0; i < images.length; i++) {
     pieLabels.push(images[i].name);
     pieVotes.push(images[i].votes);
   }
-
-  console.log(pieLabels, pieVotes);
-
   function randomColor() {
     var hexDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
     var result = '#';
@@ -90,7 +83,6 @@ var makeChart = function() {
   new Chart(context).Pie(pieData);
 };
 
-
 var num1, num2;
 
 var displayImages = function () {
@@ -100,8 +92,6 @@ var displayImages = function () {
 
   picture1.setAttribute('src', images[num1].path);
   picture2.setAttribute('src', images[num2].path);
-
-
 };
 
 picture1.addEventListener('click', function(){
@@ -116,14 +106,23 @@ picture2.addEventListener('click', function(){
     makeChart();
     });
 
+// var displayName = function() {
+//   var firstName = document.getElementById("firstName");
+//   var secondName = document.getElementById("secondName");
+
+//   firstName.textContent = images[num1].name;
+//   secondName.textContent = images[num2].name;
+// }
+
 displayImages();
+// displayName();
 
 var data = [
   {
-    value: 40,
+    value: 0,
     color: "#F74648",
     highlight: "#FF5a5e",
-    label: "Bob"
+    label: "Chart"
   }
 ]
 

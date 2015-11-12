@@ -43,6 +43,31 @@ header h1{
   text-align: center;
 }
 
-#canvas {
+/*#canvas {
   vertical-align: center;
+  text-align: center;
 }
+*/
+section{
+  margin: auto;
+  padding-top: 35px;
+}
+
+/*#canvas {
+   width: 100%;
+   text-align:center;
+}*/
+
+canvas {
+   display: inline;
+}
+
+/*#container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  clip: rect(0px, 1000px, 100px, 0px);
+  overflow: hidden;
+  justify-content: space-around;
+}*/
