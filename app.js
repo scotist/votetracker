@@ -52,7 +52,6 @@ var tracker = {
     console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
     images[index].votes++;
     console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
-
     displayImages();
   }
 }
@@ -80,7 +79,6 @@ var makeChart = function() {
         color: randomColor(),
         highlight: '#eeeeee'
       })
-      // console.log(pieData);
   }
   var oldcanv = document.getElementById('canvas');
   document.getElementById('main').removeChild(oldcanv);
@@ -106,23 +104,18 @@ var displayImages = function () {
 
 picture1.addEventListener('click', function(){
     tracker.vote(num1);
-    // console.log('You voted for ' + images[num1].name);
     makeChart();
     localStorage.setItem('images', JSON.stringify(images));
   });
 
 picture2.addEventListener('click', function(){
     tracker.vote(num2);
-    // console.log('You voted for ' + images[num2].name);
     makeChart();
     localStorage.setItem('images', JSON.stringify(images));
   });
-
 
 displayImages();
 makeChart();
 
 var context = document.getElementById("canvas").getContext("2d");
 var myChart = new Chart(context).Pie(pieData);
-
-
