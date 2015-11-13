@@ -34,7 +34,6 @@ function failCakes(name, path) {
   images.push(this);
 };
 
-// Begin tracker object
 var tracker = {
   randomNum: function () {
     return Math.floor(Math.random() * images.length);
@@ -53,14 +52,10 @@ var tracker = {
     console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
     images[index].votes++;
     console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
-    // myChart.segments[index].value = images[index].votes;
-    // myChart.update();
+
     displayImages();
   }
-
-
 }
-
 
 var makeChart = function() {
   var pieLabels = [];
@@ -111,7 +106,6 @@ var displayImages = function () {
 
 picture1.addEventListener('click', function(){
     tracker.vote(num1);
-    // picture1.setAttribute("class", "winnerOne");
     console.log('You voted for ' + images[num1].name);
     makeChart();
     localStorage.setItem('images', JSON.stringify(images));
@@ -119,7 +113,6 @@ picture1.addEventListener('click', function(){
 
 picture2.addEventListener('click', function(){
     tracker.vote(num2);
-    // picture2.setAttribute("class", "winnerTwo");
     console.log('You voted for ' + images[num2].name);
     makeChart();
     localStorage.setItem('images', JSON.stringify(images));
@@ -127,27 +120,8 @@ picture2.addEventListener('click', function(){
 
 
 displayImages();
-// displayName();
-
-
 
 var context = document.getElementById("canvas").getContext("2d");
 var myChart = new Chart(context).Pie(pieData);
 
-// function checkLocal() {
-//   if (localStorage.chartData && localStorage.images) {
-//     pieData = JSON.parse(localStorage.chartData);
-//     // images = JSON.parse(localStorage.getItem('images'));
-//     new Chart(context).Pie(pieData);
-//     console.log(localStorage);
-  // }
-  //  else {
-  // //       myChart.update();
-
-  //   new Chart(context).Pie(data);
-  // // //   makeChart();
-  // }
-// }
-
-// checkLocal();
 
