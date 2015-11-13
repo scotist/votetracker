@@ -1,5 +1,28 @@
+if (localStorage.images) {
+  var images = JSON.parse(localStorage.images);
+} else {
+  var images = [];
+  new failCakes("baby", "images/baby.png");
+  new failCakes("buzz", "images/buzz.png");
+  new failCakes("clown", "images/clown.png");
+  new failCakes("deadbaby", "images/deadbaby.jpg");
+  new failCakes("literal", "images/literal.png");
+  new failCakes("love", "images/love.jpg");
+  new failCakes("melting", "images/melting.png");
+  new failCakes("olympics", "images/olympics.png");
+  new failCakes("proofread", "images/proofread.png");
+  new failCakes("remember", "images/remember.png");
+  new failCakes("shoes", "images/shoes.png");
+  new failCakes("sprinkles", "images/sprinkles.png");
+  new failCakes("toenail", "images/toenail.png");
+}
 
-var images = [];
+var pieData = {
+  value: 1,
+  color: "#F74648",
+  highlight: "#FF5a5e",
+  label: "Chart"
+};
 
 var picture1 = document.getElementById('picture1');
 var picture2 = document.getElementById('picture2');
@@ -10,20 +33,6 @@ function failCakes(name, path) {
   this.votes = 0;
   images.push(this);
 };
-
-var baby = new failCakes("baby", "images/baby.png");
-var buzz = new failCakes("buzz", "images/buzz.png");
-var clown = new failCakes("clown", "images/clown.png");
-var deadbaby = new failCakes("deadbaby", "images/deadbaby.jpg");
-var literal = new failCakes("literal", "images/literal.png");
-var love = new failCakes("love", "images/love.jpg");
-var melting = new failCakes("melting", "images/melting.png");
-var olympics = new failCakes("olympics", "images/olympics.png");
-var proofread = new failCakes("proofread", "images/proofread.png");
-var remember = new failCakes("remember", "images/remember.png");
-var shoes = new failCakes("shoes", "images/shoes.png");
-var sprinkles = new failCakes("sprinkles", "images/sprinkles.png");
-var toenail = new failCakes("toenail", "images/toenail.png");
 
 // Begin tracker object
 var tracker = {
@@ -45,37 +54,13 @@ var tracker = {
     images[index].votes++;
     console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
     // myChart.segments[index].value = images[index].votes;
-    myChart.update();
-
+    // myChart.update();
     displayImages();
   }
 
+
 }
-// End tracker object
 
-// The below got put into tracker:
-// var randomNum = function () {
-//   return Math.floor(Math.random() * images.length);
-//   console.log(randomNum);
-// };
-
-// var calcNewNum = function (num1) {
-//   var num2;
-//   do {
-//     num2 = randomNum();
-//   } while (num1 === num2)
-//   return num2;
-// };
-
-// var vote = function (index) {
-//   console.log(images[index].name + ' had ' + images[index].votes + ' votes.');
-//   images[index].votes++;
-//   console.log(images[index].name + ' now has ' + images[index].votes + ' votes.');
-//   // myChart.segments[index].value = images[index].votes;
-//   myChart.update();
-
-//   displayImages();
-// };
 
 var makeChart = function() {
   var pieLabels = [];
@@ -92,7 +77,7 @@ var makeChart = function() {
     }
     return result;
   }
-  var pieData = [];
+  pieData = [];
     for (var i in pieLabels) {
       pieData.push({
         value: pieVotes[i],
@@ -100,6 +85,7 @@ var makeChart = function() {
         color: randomColor(),
         highlight: '#eeeeee'
       })
+      console.log(pieData);
   }
   var oldcanv = document.getElementById('canvas');
   document.getElementById('main').removeChild(oldcanv);
@@ -128,6 +114,7 @@ picture1.addEventListener('click', function(){
     // picture1.setAttribute("class", "winnerOne");
     console.log('You voted for ' + images[num1].name);
     makeChart();
+    localStorage.setItem('images', JSON.stringify(images));
   });
 
 picture2.addEventListener('click', function(){
@@ -135,30 +122,32 @@ picture2.addEventListener('click', function(){
     // picture2.setAttribute("class", "winnerTwo");
     console.log('You voted for ' + images[num2].name);
     makeChart();
-    });
+    localStorage.setItem('images', JSON.stringify(images));
+  });
 
-// var displayName = function() {
-//   var firstName = document.getElementById("firstName");
-//   var secondName = document.getElementById("secondName");
-
-//   firstName.textContent = images[num1].name;
-//   secondName.textContent = images[num2].name;
-// }
 
 displayImages();
 // displayName();
 
-var data = [
-  {
-    value: 0,
-    color: "#F74648",
-    highlight: "#FF5a5e",
-    label: "Chart"
-  }
-]
+
 
 var context = document.getElementById("canvas").getContext("2d");
-var myChart = new Chart(context).Pie(data);
+var myChart = new Chart(context).Pie(pieData);
 
+// function checkLocal() {
+//   if (localStorage.chartData && localStorage.images) {
+//     pieData = JSON.parse(localStorage.chartData);
+//     // images = JSON.parse(localStorage.getItem('images'));
+//     new Chart(context).Pie(pieData);
+//     console.log(localStorage);
+  // }
+  //  else {
+  // //       myChart.update();
 
+  //   new Chart(context).Pie(data);
+  // // //   makeChart();
+  // }
+// }
+
+// checkLocal();
 
