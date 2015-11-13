@@ -42,3 +42,81 @@ header h1{
   vertical-align: center;
   text-align: center;
 }
+
+/*#canvas {
+  vertical-align: center;
+  text-align: center;
+}
+*/
+section{
+  margin: auto;
+  padding-top: 35px;
+}
+
+/*#canvas {
+   width: 100%;
+   text-align:center;
+}*/
+
+canvas {
+   display: inline;
+}
+
+/*.winnerOne{
+  -webkit-transform: rotateZ(-30deg);
+  -ms-transform: rotateZ(-30deg);
+   transform: rotateZ(-30deg);
+}*/
+
+/*#container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  clip: rect(0px, 1000px, 100px, 0px);
+  overflow: hidden;
+  justify-content: space-around;
+}*/
+
+
+
+.card-container {
+  cursor: pointer;
+  height: 400px;
+  perspective: 600;
+  position: relative;
+  width: 400px;
+  display: inline-block;
+}
+.card {
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  width: 100%;
+}
+.card:hover {
+  transform: rotateY(180deg);
+}
+.card .side {
+  backface-visibility: hidden;
+  border-radius: 6px;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+.card .back {
+  background: #eaeaed;
+  color: #0087cc;
+  line-height: 150px;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+.rotate:hover
+{
+  -webkit-transform: rotateZ(30deg);
+  -ms-transform: rotateZ(30deg);
+  transform: rotateZ(30deg);
+}
